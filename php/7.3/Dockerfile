@@ -20,6 +20,17 @@ RUN apk add --no-cache --virtual .build-deps \
         icu \
         icu-dev \
         libzip-dev \
+        chromium \
+        nss \
+        freetype \
+        freetype-dev \
+        harfbuzz \ca-certificates \
+        ttf-freefont \
+        nodejs \
+        yarn \
+        npm \
+        bash \
+        openssh \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && docker-php-ext-install \
@@ -37,6 +48,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zip \
         intl \
     && curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer \
+    && composer global require laravel/envoy \
+    && npm install backstopjs -g --unsafe-perm=true \
     && apk del -f .build-deps
 
 WORKDIR /var/www
