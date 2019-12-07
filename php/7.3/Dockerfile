@@ -58,7 +58,7 @@ RUN apk add --no-cache --virtual .build-deps \
     --with-jpeg-dir=/usr/include/ && \
       NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
       docker-php-ext-install -j${NPROC} gd && \
-      apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
+      apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev \
     && curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer \
     && composer global require laravel/envoy \
     && npm install backstopjs -g --unsafe-perm=true \
